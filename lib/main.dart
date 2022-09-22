@@ -24,7 +24,42 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
           useMaterial3: true),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const TopRouter(),
+    );
+  }
+}
+
+class TopRouter extends StatelessWidget {
+  const TopRouter({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Navigate"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const MyHomePage(title: "Original Home Page")));
+              },
+              child: const Text("Visit original home page"),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  print("need a route target");
+                },
+                child: const Text("This goes nowhere"))
+          ],
+        ),
+      ),
     );
   }
 }
